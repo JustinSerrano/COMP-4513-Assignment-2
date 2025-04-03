@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchGalleries } from '../services/galleryService';
+import { fetchGalleries, fetchPaintingsByGallery } from '../services/galleryService';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
@@ -7,6 +7,10 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 const GalleryView = () => {
   const [galleries, setGalleries] = useState([]);
   const [selectedGallery, setSelectedGallery] = useState(null);
+  const [paintings, setPaintings] = useState([]);
+  const [sortBy, setSortBy] = useState('title');
+  const [showModal, setShowModal] = useState(false);
+  const [selectedPainting, setSelectedPainting] = useState(null);
 
   useEffect(() => {
     const getGalleries = async () => {
@@ -17,10 +21,41 @@ const GalleryView = () => {
     getGalleries();
   }, []);
 
-  const handleGalleryChange = (e) => {
+  const handleGalleryChange = async (e) => {
     const selectedId = parseInt(e.target.value, 10);
     const gallery = galleries.find(g => g.galleryId === selectedId);
     setSelectedGallery(gallery);
+
+    if (gallery) {
+      const paintingsData = await fetchPaintingsByGallery(gallery.galleryId);
+      setPaintings(paintingsData);
+    } else {
+      setPaintings([]);
+    }
+  };
+
+  const handleSortChange = (e) => {
+    setSortBy(e.target.value);
+  };
+
+  const sortedPaintings = [...paintings].sort((a, b) => {
+    if (sortBy === 'title') {
+      return a.title.localeCompare(b.title);
+    }
+    if (sortBy === 'artist') {
+      const artistA = `${a.artists.firstName} ${a.artists.lastName}`;
+      const artistB = `${b.artists.firstName} ${b.artists.lastName}`;
+      return artistA.localeCompare(artistB);
+    }
+    if (sortBy === 'year') {
+      return (a.yearOfWork || 0) - (b.yearOfWork || 0);
+    }
+    return 0;
+  });
+
+  const handlePaintingClick = (painting) => {
+    setSelectedPainting(painting);
+    setShowModal(true);
   };
 
   return (
@@ -44,9 +79,10 @@ const GalleryView = () => {
           </select>
         </div>
 
-        <div className="flex w-full justify-between mt-4">
-          {/* Left Side Content */}
-          {selectedGallery && (
+        {/* Render Both Left and Right Side Only When a Gallery is Selected */}
+        {selectedGallery && (
+          <div className="flex w-full justify-between mt-4">
+            {/* Left Side Content */}
             <div className="w-1/2 p-4 bg-white shadow rounded-lg">
               <h2 className="text-2xl font-bold mb-4">{selectedGallery.galleryName}</h2>
               <p><strong>Native Name:</strong> {selectedGallery.galleryNativeName}</p>
@@ -86,16 +122,61 @@ const GalleryView = () => {
                 </div>
               )}
             </div>
-          )}
 
-          {/* Placeholder for the Right Side */}
-          <div className="w-1/2 p-4 bg-gray-100 shadow rounded-lg ml-4">
-            <p>This section will be implemented later.</p>
+            {/* Right Side Content*/}
+            <div className="w-1/2 p-4 bg-white shadow rounded-lg ml-4">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-bold">Paintings</h2>
+                <select onChange={handleSortChange} value={sortBy} className="border p-2 rounded">
+                  <option value="title">Title</option>
+                  <option value="artist">Artist</option>
+                  <option value="year">Year</option>
+                </select>
+              </div>
+
+              <ul>
+                {sortedPaintings.map(painting => (
+                  <li
+                    key={painting.paintingId}
+                    onClick={() => handlePaintingClick(painting)}
+                    className="cursor-pointer p-2 hover:bg-gray-100 flex items-center"
+                  >
+                    <img
+                      src={`/art-images/paintings/square/${painting.imageFileName}.jpg`}
+                      alt={painting.title}
+                      className="w-20 h-20 object-cover rounded mr-4"
+                    />
+                    <div>
+                      <p className="font-bold">{painting.artists?.firstName} {painting.artists?.lastName}</p>
+                      <p className="text-gray-600 italic">{painting.title} ({painting.yearOfWork})</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+
+            </div>
           </div>
-        </div>
+        )}
       </main>
 
       <Footer />
+      {/* Modal */}
+      {showModal && selectedPainting && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center modal-overlay">
+          <div className="bg-white p-8 rounded-lg shadow-lg w-1/2">
+            <h2 className="text-2xl font-bold mb-4">{selectedPainting.title}</h2>
+            <img
+              src={`/art-images/paintings/full/${selectedPainting.imageFileName}.jpg`}
+              alt={selectedPainting.title}
+              className="w-full mb-4 rounded"
+            />
+            <p><strong>Artist:</strong> {selectedPainting.artists?.firstName} {selectedPainting.artists?.lastName}</p>
+            <p><strong>Year:</strong> {selectedPainting.yearOfWork}</p>
+            <p><strong>Description:</strong> {selectedPainting.description}</p>
+            <button onClick={() => setShowModal(false)} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">Close</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -14,3 +14,18 @@ export const fetchGalleries = async () => {
 
     return sortedData;
 };
+
+// Fetch paintings based on galleryId
+export const fetchPaintingsByGallery = async (galleryId) => {
+    const { data, error } = await supabase
+        .from('paintings')
+        .select('*, artists(firstName, lastName)')
+        .eq('galleryId', galleryId);
+
+    if (error) {
+        console.error('Error fetching paintings:', error);
+        return [];
+    }
+
+    return data;
+};
