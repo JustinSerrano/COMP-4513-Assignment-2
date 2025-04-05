@@ -54,7 +54,9 @@ const ArtistView = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
+
       <main className="flex-grow p-8 flex flex-col items-center">
+        
         {/* Dropdown List */}
         <div className="mb-6">
           <label htmlFor="artistSelect" className="block mb-2 font-bold text-gray-700">Select an Artist to View Paintings</label>
@@ -75,6 +77,7 @@ const ArtistView = () => {
         {/* Render Both Left and Right Side Only When an Artist is Selected */}
         {selectedArtist && (
           <div className="flex w-full justify-between mt-4">
+            
             {/* Left Side Content */}
             <div className="w-1/2 p-4 bg-white shadow rounded-lg flex flex-col">
               <div className="flex mb-4">
