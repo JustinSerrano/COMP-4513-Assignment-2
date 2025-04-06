@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
-import { fetchPaintingDetails } from '../services/paintingService';
+import { fetchPaintingDetails } from '../../services/paintingService';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 // Bind modal to your app element
 Modal.setAppElement('#root');
 
-const PaintingModal = ({ paintingId, isOpen, onClose }) => {
+const PaintingModal = ({ paintingId, isOpen, onClose, addFavorite, removeFavorite, favorites }) => {
     const [painting, setPainting] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -28,6 +30,16 @@ const PaintingModal = ({ paintingId, isOpen, onClose }) => {
     const annotations = painting.jsonAnnotations ? JSON.parse(painting.jsonAnnotations) : null;
     const dominantColors = annotations?.dominantColors || [];
 
+    const isFavorite = favorites.paintings.includes(painting.title);
+
+    const toggleFavorite = () => {
+        if (isFavorite) {
+            removeFavorite('paintings', painting.title);
+        } else {
+            addFavorite('paintings', painting.title);
+        }
+    };
+
     return (
         <Modal
             isOpen={isOpen}
@@ -45,6 +57,20 @@ const PaintingModal = ({ paintingId, isOpen, onClose }) => {
                         Click outside the modal to close
                     </div>
 
+                    <div className="flex justify-between items-center mb-4">
+                        <h2 className="text-3xl font-bold text-gray-800">{painting.title}</h2>
+                        <button
+                            onClick={toggleFavorite}
+                            className="focus:outline-none hover-effect"
+                        >
+                            <FontAwesomeIcon
+                                icon={faStar}
+                                size="2x"
+                                className={`star-icon ${isFavorite ? 'star-icon-active' : 'star-icon-inactive'}`}
+                            />
+                        </button>
+                    </div>
+
                     <div className="flex space-x-6" onClick={(e) => e.stopPropagation()}>
                         {/* Image Section */}
                         <div className="flex-shrink-0">
@@ -57,7 +83,6 @@ const PaintingModal = ({ paintingId, isOpen, onClose }) => {
 
                         {/* Text Information Section */}
                         <div className="flex-grow space-y-4">
-                            <h2 className="text-3xl font-bold text-gray-800">{painting.title}</h2>
                             <p className="text-lg"><strong>Artist:</strong> {painting.artists?.firstName} {painting.artists?.lastName}</p>
                             <p className="text-lg"><strong>Medium:</strong> {painting.medium || 'Not specified'}</p>
                             <p className="text-lg"><strong>Dimensions:</strong> {painting.width && painting.height ? `${painting.width} x ${painting.height} cm` : 'Dimensions not available'}</p>

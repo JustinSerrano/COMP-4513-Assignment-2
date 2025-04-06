@@ -1,14 +1,14 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { fetchArtists, fetchPaintingsByArtist } from '../services/artistService';
-import Header from '../components/Header';
-import Dropdown from '../components/Dropdown';
-import ArtistDetails from '../components/ArtistDetails';
-import PaintingList from '../components/PaintingList';
-import Footer from '../components/Footer';
-import ArtistModal from '../components/ArtistModal';
-import PaintingModal from '../components/PaintingModal';
+import Header from '../components/layout/Header';
+import Dropdown from '../components/sections/Dropdown';
+import ArtistDetails from '../components/sections/ArtistDetails';
+import PaintingList from '../components/sections/PaintingList';
+import Footer from '../components/layout/Footer';
+import ArtistModal from '../components/modals/ArtistModal';
+import PaintingModal from '../components/modals/PaintingModal';
 
-const ArtistView = () => {
+const ArtistView = ({ addFavorite, removeFavorite, favorites }) => {
   const [artists, setArtists] = useState([]);
   const [selectedArtist, setSelectedArtist] = useState(null);
   const [paintings, setPaintings] = useState([]);
@@ -77,7 +77,10 @@ const ArtistView = () => {
             {/* Left Side Content */}
             <ArtistDetails
               artist={selectedArtist}
-              showArtistModal={() => setShowArtistModal(true)}
+              showArtistModal={showArtistModal}
+              addFavorite={addFavorite}
+              removeFavorite={removeFavorite}
+              favorites={favorites}
             />
 
             {/* Right Side Content*/}
@@ -103,6 +106,9 @@ const ArtistView = () => {
         paintingId={selectedPaintingId}
         isOpen={showPaintingModal}
         onClose={() => setShowPaintingModal(false)}
+        addFavorite={addFavorite}
+        removeFavorite={removeFavorite}
+        favorites={favorites}
       />
     </div >
   );

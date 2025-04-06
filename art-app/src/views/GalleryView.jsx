@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { fetchGalleries, fetchPaintingsByGallery } from '../services/galleryService';
-import Header from '../components/Header';
-import Dropdown from '../components/Dropdown';
-import GalleryDetails from '../components/GalleryDetails';
-import PaintingList from '../components/PaintingList';
-import Footer from '../components/Footer';
-import PaintingModal from '../components/PaintingModal';
+import Header from '../components/layout/Header';
+import Dropdown from '../components/sections/Dropdown';
+import GalleryDetails from '../components/sections/GalleryDetails';
+import PaintingList from '../components/sections/PaintingList';
+import Footer from '../components/layout/Footer';
+import PaintingModal from '../components/modals/PaintingModal';
 
-const GalleryView = () => {
+const GalleryView = ({ addFavorite, removeFavorite, favorites }) => {
   const [galleries, setGalleries] = useState([]);
   const [selectedGallery, setSelectedGallery] = useState(null);
   const [paintings, setPaintings] = useState([]);
@@ -80,9 +80,14 @@ const GalleryView = () => {
         {/* Render Both Left and Right Side Only When a Gallery is Selected */}
         {selectedGallery && (
           <div className="flex w-full justify-between mt-4">
-            
+
             {/* Left Side Content */}
-            <GalleryDetails gallery={selectedGallery} />
+            <GalleryDetails
+              gallery={selectedGallery}
+              addFavorite={addFavorite}
+              removeFavorite={removeFavorite}
+              favorites={favorites}
+            />
 
             {/* Right Side Content*/}
             <PaintingList
@@ -100,6 +105,9 @@ const GalleryView = () => {
         paintingId={selectedPaintingId}
         isOpen={showPaintingModal}
         onClose={() => setShowPaintingModal(false)}
+        addFavorite={addFavorite}
+        removeFavorite={removeFavorite}
+        favorites={favorites}
       />
 
 

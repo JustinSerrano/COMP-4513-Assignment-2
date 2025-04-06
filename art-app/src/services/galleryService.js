@@ -5,7 +5,7 @@ export const fetchGalleries = async () => {
     try {
         const { data, error } = await supabase
             .from('galleries')
-            .select('galleryId, galleryName, galleryAddress, galleryCity, galleryCountry, galleryWebSite, latitude, longitude');
+            .select('galleryId, galleryName, galleryNativeName,galleryAddress, galleryCity, galleryCountry, galleryWebSite, latitude, longitude');
 
         if (error) throw new Error(error.message);
 

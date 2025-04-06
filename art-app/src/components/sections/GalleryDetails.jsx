@@ -1,13 +1,39 @@
 import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
-const GalleryDetails = ({ gallery }) => {
+const GalleryDetails = ({ gallery, addFavorite, removeFavorite, favorites }) => {
     if (!gallery) return null;
 
-    return (
+    const isFavorite = favorites.galleries.includes(gallery.galleryName);
 
+    const toggleFavorite = () => {
+        if (isFavorite) {
+            removeFavorite('galleries', gallery.galleryName);
+        } else {
+            addFavorite('galleries', gallery.galleryName);
+        }
+    };
+
+    return (
         <div className="w-1/2 p-4 bg-white shadow rounded-lg">
-            <h2 className="text-2xl font-bold mb-4">{gallery.galleryName}</h2>
+            {/* Gallery Title and Favorite Toggle */}
+            <div className="flex justify-between items-center mb-4">
+                <h2 className="text-2xl font-bold">{gallery.galleryName}</h2>
+                <button
+                    onClick={toggleFavorite}
+                    className="focus:outline-none hover-effect"
+                >
+                    <FontAwesomeIcon
+                        icon={faStar}
+                        size="2x"
+                        className={`star-icon ${isFavorite ? 'star-icon-active' : 'star-icon-inactive'}`}
+                    />
+                </button>
+            </div>
+
+            {/* Gallery Details */}
             <p><strong>Native Name:</strong> {gallery.galleryNativeName}</p>
             <p><strong>Address:</strong> {gallery.galleryAddress}</p>
             <p><strong>City:</strong> {gallery.galleryCity}</p>

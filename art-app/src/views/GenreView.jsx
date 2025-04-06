@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { fetchGenres, fetchPaintingsByGenre } from '../services/genreService';
-import Header from '../components/Header';
-import Dropdown from '../components/Dropdown';
-import GenreDetails from '../components/GenreDetails';
-import PaintingList from '../components/PaintingList';
-import Footer from '../components/Footer';
-import PaintingModal from '../components/PaintingModal';
+import Header from '../components/layout/Header';
+import Dropdown from '../components/sections/Dropdown';
+import GenreDetails from '../components/sections/GenreDetails';
+import PaintingList from '../components/sections/PaintingList';
+import Footer from '../components/layout/Footer';
+import PaintingModal from '../components/modals/PaintingModal';
 
-const GenreView = () => {
+const GenreView = ({ addFavorite, removeFavorite, favorites }) => {
   const [genres, setGenres] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState(null);
   const [paintings, setPaintings] = useState([]);
@@ -102,6 +102,9 @@ const GenreView = () => {
         paintingId={selectedPaintingId}
         isOpen={showPaintingModal}
         onClose={() => setShowPaintingModal(false)}
+        addFavorite={addFavorite}
+        removeFavorite={removeFavorite}
+        favorites={favorites}
       />
     </div >
   );

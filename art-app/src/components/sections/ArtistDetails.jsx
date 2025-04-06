@@ -1,14 +1,26 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
-const ArtistDetails = ({ artist, showArtistModal }) => {
+const ArtistDetails = ({ artist, showArtistModal, addFavorite, removeFavorite, favorites }) => {
     if (!artist) return null;
+
+    const isFavorite = favorites.artists.includes(artist.firstName + ' ' + artist.lastName);
+
+    const toggleFavorite = () => {
+        if (isFavorite) {
+            removeFavorite('artists', artist.firstName + ' ' + artist.lastName);
+        } else {
+            addFavorite('artists', artist.firstName + ' ' + artist.lastName);
+        }
+    };
 
     return (
         <div className="w-full p-4 bg-white shadow rounded-lg flex flex-col">
             <div className="flex mb-4">
                 {/* Artist Image */}
                 <div
-                    className="flex-shrink-0 mr-4 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                    className="flex-shrink-0 mr-4 cursor-pointer transform hover-effect"
                     onClick={showArtistModal}
                 >
                     <img
@@ -21,7 +33,19 @@ const ArtistDetails = ({ artist, showArtistModal }) => {
                 {/* Artist Information */}
                 <div className="flex-grow">
                     <div className="flex flex-col justify-start space-y-2">
-                        <h2 className="text-2xl font-bold">{artist.firstName} {artist.lastName}</h2>
+                        <div className="flex justify-between items-center">
+                            <h2 className="text-2xl font-bold">{artist.firstName} {artist.lastName}</h2>
+                            <button
+                                onClick={toggleFavorite}
+                                className="focus:outline-none hover-effect"
+                            >
+                                <FontAwesomeIcon
+                                    icon={faStar}
+                                    size="2x"
+                                    className={`star-icon ${isFavorite ? 'star-icon-active' : 'star-icon-inactive'}`}
+                                />
+                            </button>
+                        </div>
                         <p><strong>Nationality:</strong> {artist.nationality}</p>
                         <p><strong>Gender:</strong> {artist.gender}</p>
                         <p><strong>Born:</strong> {artist.yearOfBirth}</p>

@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { fetchArtists, fetchGalleries, fetchPaintingsByFilter } from '../services/paintingService';
-import Header from '../components/Header';
-import FilterSection from '../components/FilterSection';
-import PaintingGrid from '../components/PaintingGrid';
-import Footer from '../components/Footer';
-import PaintingModal from '../components/PaintingModal';
+import Header from '../components/layout/Header';
+import FilterSection from '../components/sections/FilterSection';
+import PaintingGrid from '../components/sections/PaintingGrid';
+import Footer from '../components/layout/Footer';
+import PaintingModal from '../components/modals/PaintingModal';
 
-const PaintingsView = () => {
+const PaintingsView = ({ addFavorite, removeFavorite, favorites }) => {
   const [filterBy, setFilterBy] = useState('year');
   const [artists, setArtists] = useState([]);
   const [galleries, setGalleries] = useState([]);
@@ -108,6 +108,9 @@ const PaintingsView = () => {
         paintingId={selectedPaintingId}
         isOpen={showPaintingModal}
         onClose={() => setShowPaintingModal(false)}
+        addFavorite={addFavorite}
+        removeFavorite={removeFavorite}
+        favorites={favorites}
       />
     </div >
   );
