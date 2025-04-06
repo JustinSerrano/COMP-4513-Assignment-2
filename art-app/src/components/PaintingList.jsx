@@ -30,7 +30,7 @@ const PaintingList = ({ paintings, handlePaintingClick, sortBy, handleSortChange
                     {paintings.map(painting => (
                         <li
                             key={painting.paintingId}
-                            onClick={() => handlePaintingClick(painting)}
+                            onClick={() => handlePaintingClick(painting.paintingId)}
                             className="cursor-pointer p-2 hover:bg-gray-100 flex items-center"
                         >
                             <img

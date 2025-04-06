@@ -16,7 +16,7 @@ const PaintingsView = () => {
   const [selectedFilter, setSelectedFilter] = useState(null);
   const [sortBy, setSortBy] = useState('title');
   const [showPaintingModal, setShowPaintingModal] = useState(false);
-  const [selectedPainting, setSelectedPainting] = useState(null);
+  const [selectedPaintingId, setSelectedPaintingId] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -67,8 +67,8 @@ const PaintingsView = () => {
   }, [paintings, sortBy]);
 
 
-  const handlePaintingClick = (painting) => {
-    setSelectedPainting(painting);
+  const handlePaintingClick = (paintingId) => {
+    setSelectedPaintingId(paintingId);
     setShowPaintingModal(true);
   };
 
@@ -105,7 +105,7 @@ const PaintingsView = () => {
 
       <Footer />
       <PaintingModal
-        painting={selectedPainting}
+        paintingId={selectedPaintingId}
         isOpen={showPaintingModal}
         onClose={() => setShowPaintingModal(false)}
       />

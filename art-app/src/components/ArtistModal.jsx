@@ -1,18 +1,20 @@
 import React from 'react';
+import Modal from 'react-modal';
+
+// Bind modal to your app element
+Modal.setAppElement('#root');
 
 const ArtistModal = ({ artist, isOpen, onClose }) => {
     if (!isOpen || !artist) return null;
 
     return (
-        <div
-            className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50"
-            onClick={onClose}
+        <Modal
+            isOpen={isOpen}
+            onRequestClose={onClose}
+            contentLabel="Artist Image"
+            overlayClassName="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50"
+            className="relative max-w-[100vw] max-h-[120vh] p-4 rounded-lg"
         >
-            {/* Instructional Messages (Top) */}
-            <div className="absolute top-4 left-1/2 transform -translate-x-1/2 text-white text-sm bg-black bg-opacity-80 px-4 py-2 rounded shadow-lg">
-                Click outside the modal to close
-            </div>
-
             <div
                 className="relative max-w-[100vw] max-h-[120vh]"
                 onClick={(e) => e.stopPropagation()}
@@ -25,10 +27,10 @@ const ArtistModal = ({ artist, isOpen, onClose }) => {
             </div>
 
             {/* Instructional Message (Bottom) */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm bg-black bg-opacity-80 px-4 py-2 rounded shadow-lg">
+            <div className="absolute bottom-0 left-0 right-0 p-2 bg-black bg-opacity-80 text-white text-sm text-center">
                 Click outside the modal to close
             </div>
-        </div>
+        </Modal>
     );
 };
 

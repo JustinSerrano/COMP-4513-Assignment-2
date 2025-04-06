@@ -14,7 +14,7 @@ const ArtistView = () => {
   const [paintings, setPaintings] = useState([]);
   const [sortBy, setSortBy] = useState('title');
   const [showPaintingModal, setShowPaintingModal] = useState(false);
-  const [selectedPainting, setSelectedPainting] = useState(null);
+  const [selectedPaintingId, setSelectedPaintingId] = useState(false);
   const [showArtistModal, setShowArtistModal] = useState(false);
 
   useEffect(() => {
@@ -51,8 +51,8 @@ const ArtistView = () => {
     });
   }, [paintings, sortBy]);
 
-  const handlePaintingClick = (painting) => {
-    setSelectedPainting(painting);
+  const handlePaintingClick = (paintingId) => {
+    setSelectedPaintingId(paintingId);
     setShowPaintingModal(true);
   };
 
@@ -100,7 +100,7 @@ const ArtistView = () => {
       />
 
       <PaintingModal
-        painting={selectedPainting}
+        paintingId={selectedPaintingId}
         isOpen={showPaintingModal}
         onClose={() => setShowPaintingModal(false)}
       />
