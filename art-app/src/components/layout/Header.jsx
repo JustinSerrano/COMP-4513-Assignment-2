@@ -26,8 +26,8 @@ const Header = () => {
                         to={link.path}
                         className={({ isActive }) =>
                             isActive
-                                ? "text-[#4D4D4F] cursor-not-allowed mx-3 transition"
-                                : "mx-3 hover:text-[#0076A8] transition"
+                                ? "text-[#A0A0A0] cursor-not-allowed mx-3 transition"
+                                : "text-white mx-3 hover:text-[#00BFFF] transition"
                         }
                         style={{ pointerEvents: location.pathname === link.path ? "none" : "auto" }}
                     >

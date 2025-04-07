@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
-const ArtistDetails = ({ artist, showArtistModal, addFavorite, removeFavorite, favorites }) => {
+const ArtistDetails = ({ artist, handleArtistClick, addFavorite, removeFavorite, favorites }) => {
     if (!artist) return null;
 
     const isFavorite = favorites.artists.includes(artist.firstName + ' ' + artist.lastName);
@@ -21,7 +21,7 @@ const ArtistDetails = ({ artist, showArtistModal, addFavorite, removeFavorite, f
                 {/* Artist Image */}
                 <div
                     className="flex-shrink-0 mr-4 cursor-pointer transform hover-effect"
-                    onClick={showArtistModal}
+                    onClick={() =>handleArtistClick(artist)}
                 >
                     <img
                         src={`/art-images/artists/square/${artist.artistId}.jpg`}

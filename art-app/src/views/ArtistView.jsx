@@ -56,6 +56,11 @@ const ArtistView = ({ addFavorite, removeFavorite, favorites }) => {
     setShowPaintingModal(true);
   };
 
+  const handleArtistClick = (artist) => {
+    setSelectedArtist(artist);
+    setShowArtistModal(true);
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -77,7 +82,7 @@ const ArtistView = ({ addFavorite, removeFavorite, favorites }) => {
             {/* Left Side Content */}
             <ArtistDetails
               artist={selectedArtist}
-              showArtistModal={showArtistModal}
+              handleArtistClick={handleArtistClick}
               addFavorite={addFavorite}
               removeFavorite={removeFavorite}
               favorites={favorites}
