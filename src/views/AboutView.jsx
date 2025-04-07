@@ -36,6 +36,7 @@ const AboutView = () => {
                                 <li><strong>Headless UI:</strong> Accessibility-focused UI components like Drawers and Modals.</li>
                                 <li><strong>React Router:</strong> For intuitive client-side routing.</li>
                                 <li><strong>Vercel:</strong> For fast and seamless deployment of the application.</li>
+                                <li><strong>ChatGPT:</strong> For coding guidance, debugging support, and implementation advice.</li>
                             </ul>
                         </section>
 
