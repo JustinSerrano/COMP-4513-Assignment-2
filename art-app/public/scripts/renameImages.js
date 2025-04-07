@@ -1,3 +1,7 @@
+/**
+ * This project was developed with coding guidance, debugging support, 
+ * and implementation advice provided by ChatGPT.
+ */
 // The script recursively scans all directories under public/art-images/.
 // It removes all leading zeros from the filenames using a regex: .replace(/^0+/, '').
 

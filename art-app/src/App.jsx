@@ -1,3 +1,9 @@
+/**
+ * This project was developed with coding guidance, debugging support, 
+ * and implementation advice provided by ChatGPT.
+ */
+// App.jsx
+// This component serves as the main entry point for the application, setting up routing and managing the state of favorites.
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginView from "./views/LoginView";

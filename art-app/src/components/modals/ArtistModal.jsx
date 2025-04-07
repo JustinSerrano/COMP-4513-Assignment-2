@@ -1,3 +1,11 @@
+/**
+ * This project was developed with coding guidance, debugging support, 
+ * and implementation advice provided by ChatGPT.
+ */
+// ArtistModal.jsx
+// This component renders a modal that displays the artist's image when clicked
+// and allows the user to close the modal by clicking outside of it.
+
 import React from 'react';
 import Modal from 'react-modal';
 

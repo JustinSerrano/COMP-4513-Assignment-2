@@ -1,3 +1,11 @@
+/**
+ * This project was developed with coding guidance, debugging support, 
+ * and implementation advice provided by ChatGPT.
+ */
+// GalleryDetails.jsx
+// This component renders the details of a gallery, including its name, address, city, country, website, and a map if coordinates are available
+// and allows the user to add or remove the gallery from their favorites.
+
 import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -20,7 +28,7 @@ const GalleryDetails = ({ gallery, addFavorite, removeFavorite, favorites }) => 
         <div className="w-1/2 p-4 bg-white shadow rounded-lg">
             {/* Gallery Title and Favorite Toggle */}
             <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold">{gallery.galleryName}</h2>
+                <h2 className="text-xl font-bold">{gallery.galleryName}</h2>
                 <button
                     onClick={toggleFavorite}
                     className="focus:outline-none hover-effect"
@@ -56,7 +64,7 @@ const GalleryDetails = ({ gallery, addFavorite, removeFavorite, favorites }) => 
                         key={gallery.galleryId}
                         center={[gallery.latitude, gallery.longitude]}
                         zoom={13}
-                        style={{ height: "300px", width: "100%" }}
+                        style={{ height: "200px", width: "100%" }}
                     >
                         <TileLayer
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

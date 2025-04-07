@@ -1,3 +1,10 @@
+/**
+ * This project was developed with coding guidance, debugging support, 
+ * and implementation advice provided by ChatGPT.
+ */
+// GenreView.jsx
+// This component serves as the main view for displaying genres and their paintings, allowing users to select a genre and view its artworks.
+
 import React, { useEffect, useState, useMemo } from 'react';
 import { fetchGenres, fetchPaintingsByGenre } from '../services/genreService';
 import Header from '../components/layout/Header';

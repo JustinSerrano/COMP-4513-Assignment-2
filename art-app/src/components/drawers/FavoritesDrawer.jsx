@@ -1,3 +1,11 @@
+/**
+ * This project was developed with coding guidance, debugging support, 
+ * and implementation advice provided by ChatGPT.
+ */
+// FavoritesDrawer.jsx
+// This component renders a drawer that displays the user's favorite paintings, artists, and galleries
+// and allows them to remove items from their favorites or clear all favorites.
+
 import React, { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 

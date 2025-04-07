@@ -1,3 +1,10 @@
+/**
+ * This project was developed with coding guidance, debugging support, 
+ * and implementation advice provided by ChatGPT.
+ */
+// GenreDetails.jsx
+// This component renders detailed information about a genre, including its image, name, description, and wiki link
+
 import React from 'react';
 
 const GenreDetails = ({ genre }) => {

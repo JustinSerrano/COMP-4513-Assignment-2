@@ -1,3 +1,10 @@
+/**
+ * This project was developed with coding guidance, debugging support, 
+ * and implementation advice provided by ChatGPT.
+ */
+// AboutView.jsx
+// This component serves as the "About" page of the application, providing information about its purpose, technologies used, and features.
+
 import React from 'react';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';

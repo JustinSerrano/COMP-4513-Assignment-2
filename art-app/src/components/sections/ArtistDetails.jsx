@@ -1,3 +1,11 @@
+/**
+ * This project was developed with coding guidance, debugging support, 
+ * and implementation advice provided by ChatGPT.
+ */
+// ArtistDetails.jsx
+// This component displays detailed information about an artist, including their image, biography, and favorite status.
+// It also allows the user to add or remove the artist from their favorites list.
+
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';

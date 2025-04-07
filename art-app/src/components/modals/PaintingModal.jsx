@@ -1,3 +1,11 @@
+/**
+ * This project was developed with coding guidance, debugging support, 
+ * and implementation advice provided by ChatGPT.
+ */
+// PaintingModal.jsx
+// This component renders a modal that displays detailed information about a painting
+// and allows the user to add or remove it from their favorites list.
+
 import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import { fetchPaintingDetails } from '../../services/paintingService';

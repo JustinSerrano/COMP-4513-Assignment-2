@@ -1,3 +1,10 @@
+/**
+ * This project was developed with coding guidance, debugging support, 
+ * and implementation advice provided by ChatGPT.
+ */
+// galleryService.js
+// This service handles fetching gallery data and paintings from the Supabase database
+
 import supabase from './supabaseClient';
 
 // Fetch all galleries

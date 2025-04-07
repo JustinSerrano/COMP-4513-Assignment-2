@@ -1,3 +1,10 @@
+/**
+ * This project was developed with coding guidance, debugging support, 
+ * and implementation advice provided by ChatGPT.
+ */
+// ArtistView.jsx
+// This component serves as the main view for displaying artists and their paintings, allowing users to select an artist and view their works.
+
 import React, { useEffect, useState, useMemo } from 'react';
 import { fetchArtists, fetchPaintingsByArtist } from '../services/artistService';
 import Header from '../components/layout/Header';

@@ -1,3 +1,10 @@
+/**
+ * This project was developed with coding guidance, debugging support, 
+ * and implementation advice provided by ChatGPT.
+ */
+// artistService.js
+// This service handles fetching artist data and paintings from the Supabase database
+
 import supabase from './supabaseClient';
 
 // Fetch all artists

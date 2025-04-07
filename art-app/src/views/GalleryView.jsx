@@ -1,3 +1,10 @@
+/**
+ * This project was developed with coding guidance, debugging support, 
+ * and implementation advice provided by ChatGPT.
+ */
+// GalleryView.jsx
+// This component serves as the main view for displaying galleries and their paintings, allowing users to select a gallery and view its artworks.
+
 import React, { useEffect, useState, useMemo } from 'react';
 import { fetchGalleries, fetchPaintingsByGallery } from '../services/galleryService';
 import Header from '../components/layout/Header';

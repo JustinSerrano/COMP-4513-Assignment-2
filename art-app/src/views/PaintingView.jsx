@@ -1,3 +1,10 @@
+/**
+ * This project was developed with coding guidance, debugging support, 
+ * and implementation advice provided by ChatGPT.
+ */
+// PaintingView.jsx
+// This component serves as the main view for displaying paintings, allowing users to filter and sort artworks based on various criteria.
+
 import React, { useState, useEffect, useMemo } from 'react';
 import { fetchArtists, fetchGalleries, fetchPaintingsByFilter } from '../services/paintingService';
 import Header from '../components/layout/Header';

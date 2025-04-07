@@ -1,3 +1,10 @@
+/**
+ * This project was developed with coding guidance, debugging support, 
+ * and implementation advice provided by ChatGPT.
+ */
+// genreService.js
+// This service handles fetching genre data and related paintings from the Supabase database
+
 import supabase from './supabaseClient';
 
 // Fetch all genres from the genres table

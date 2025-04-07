@@ -1,3 +1,12 @@
+/**
+ * This project was developed with coding guidance, debugging support, 
+ * and implementation advice provided by ChatGPT.
+ */
+// Header.jsx
+// This component renders the header of the application with a dark blue background and white text
+// and includes a logo, title, and navigation links.
+// It uses React Router's NavLink for navigation and applies styles based on the active link.
+
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import mruLogo from '/src/assets/mru-logo.jpg';
@@ -10,14 +19,15 @@ const Header = () => {
         { name: "Artists", path: "/artists" },
         { name: "Genres", path: "/genres" },
         { name: "Paintings", path: "/paintings" },
-        { name: "About", path: "/about" }
+        { name: "About", path: "/about" },
+        { name: "Logout", path: "/" },
     ];
 
     return (
-        <header className="bg-[#002855] text-white py-4 px-8 flex justify-between items-center shadow-md">
-            <div className="flex items-center">
-                <img src={mruLogo} alt="MRU Logo" className="h-12 w-12 mr-3" />
-                <h1 className="text-3xl font-bold">Art Dashboard</h1>
+        <header className="bg-[#002855] text-white py-2 px-4 flex justify-between items-center shadow-md text-sm">
+            <div className="flex items-center space-x-2">
+                <img src={mruLogo} alt="MRU Logo" className="h-9 w-9" />
+                <h1 className="text-xl font-bold">Art Dashboard</h1>
             </div>
             <nav>
                 {links.map(link => (
@@ -26,8 +36,8 @@ const Header = () => {
                         to={link.path}
                         className={({ isActive }) =>
                             isActive
-                                ? "text-[#A0A0A0] cursor-not-allowed mx-3 transition"
-                                : "text-white mx-3 hover:text-[#00BFFF] transition"
+                                ? "text-[#A0A0A0] cursor-not-allowed mx-2 text-sm transition"
+                                : "text-white mx-2 text-sm hover:text-[#00BFFF] transition"
                         }
                         style={{ pointerEvents: location.pathname === link.path ? "none" : "auto" }}
                     >

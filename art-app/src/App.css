@@ -1,34 +1,10 @@
+/* This project was developed with coding guidance, debugging support, 
+and implementation advice provided by ChatGPT.*/
+/* This CSS file styles the main components of the application, including the map, modal, and favorite button.
+It uses Tailwind CSS for utility classes and custom styles for specific components.*/
+
 @import "tailwindcss";
 @import 'leaflet/dist/leaflet.css';
-
-/* Global Styling */
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Header Styling */
-header {
-    background-color: #0033A0;
-    /* MRU Blue */
-    color: white;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Footer Styling */
-footer {
-    background-color: #0033A0;
-    color: white;
-    text-align: center;
-    padding: 1rem;
-}
 
 /* Leaflet Map Container Styling */
 .leaflet-container {

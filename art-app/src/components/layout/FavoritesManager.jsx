@@ -1,3 +1,11 @@
+/**
+ * This project was developed with coding guidance, debugging support, 
+ * and implementation advice provided by ChatGPT.
+ */
+// FavoritesManager.jsx
+// This component manages the state and rendering of the favorites drawer and button
+// and ensures that the drawer is not displayed on the login page.
+
 import React from 'react';
 import FavoritesDrawer from '../drawers/FavoritesDrawer';
 import FavoriteButton from '../drawers/FavoriteButton';

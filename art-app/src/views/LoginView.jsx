@@ -1,3 +1,10 @@
+/**
+ * This project was developed with coding guidance, debugging support, 
+ * and implementation advice provided by ChatGPT.
+ */
+// LoginView.jsx
+// This component serves as the login page of the application, allowing users to log in or register for an account.
+
 import { useNavigate } from 'react-router-dom';
 import heroImage from '../assets/hero-image.jpg';
 
