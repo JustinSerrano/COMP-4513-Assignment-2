@@ -55,6 +55,13 @@ const PaintingsView = ({ addFavorite, removeFavorite, favorites }) => {
   };
 
   const handleFilter = async () => {
+    if (filterBy === 'title' && (!filterValue || filterValue.trim() === '')) {
+      // Clear the paintings list if the input is empty or only contains white spaces
+      setPaintings([]);
+      setSelectedFilter(null);
+      return;
+    }
+
     const filteredPaintings = await fetchPaintingsByFilter(filterBy, filterValue, yearRange);
     setPaintings(filteredPaintings);
     setSelectedFilter(filterBy);
